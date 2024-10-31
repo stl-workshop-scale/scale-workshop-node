@@ -30,14 +30,10 @@ const client = new ScaleWorkshop({
 });
 
 async function main() {
-  const evaluationDataset = await client.evaluationDatasets.create({
-    account_id: 'account_id',
-    kind_schema: 'GENERATION',
-    name: 'name',
-    type: 'manual',
-  });
+  const page = await client.evaluationDatasets.list();
+  const evaluationDatasetListResponse = page.items[0];
 
-  console.log(evaluationDataset.id);
+  console.log(evaluationDatasetListResponse.id);
 }
 
 main();
@@ -56,14 +52,8 @@ const client = new ScaleWorkshop({
 });
 
 async function main() {
-  const params: ScaleWorkshop.EvaluationDatasetCreateParams = {
-    account_id: 'account_id',
-    kind_schema: 'GENERATION',
-    name: 'name',
-    type: 'manual',
-  };
-  const evaluationDataset: ScaleWorkshop.EvaluationDatasetCreateResponse =
-    await client.evaluationDatasets.create(params);
+  const [evaluationDatasetListResponse]: [ScaleWorkshop.EvaluationDatasetListResponse] =
+    await client.evaluationDatasets.list();
 }
 
 main();
@@ -80,17 +70,15 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const evaluationDataset = await client.evaluationDatasets
-    .create({ account_id: 'account_id', kind_schema: 'GENERATION', name: 'name', type: 'manual' })
-    .catch(async (err) => {
-      if (err instanceof ScaleWorkshop.APIError) {
-        console.log(err.status); // 400
-        console.log(err.name); // BadRequestError
-        console.log(err.headers); // {server: 'nginx', ...}
-      } else {
-        throw err;
-      }
-    });
+  const page = await client.evaluationDatasets.list().catch(async (err) => {
+    if (err instanceof ScaleWorkshop.APIError) {
+      console.log(err.status); // 400
+      console.log(err.name); // BadRequestError
+      console.log(err.headers); // {server: 'nginx', ...}
+    } else {
+      throw err;
+    }
+  });
 }
 
 main();
@@ -125,7 +113,7 @@ const client = new ScaleWorkshop({
 });
 
 // Or, configure per-request:
-await client.evaluationDatasets.create({ account_id: 'account_id', kind_schema: 'GENERATION', name: 'name', type: 'manual' }, {
+await client.evaluationDatasets.list({
   maxRetries: 5,
 });
 ```
@@ -142,7 +130,7 @@ const client = new ScaleWorkshop({
 });
 
 // Override per-request:
-await client.evaluationDatasets.create({ account_id: 'account_id', kind_schema: 'GENERATION', name: 'name', type: 'manual' }, {
+await client.evaluationDatasets.list({
   timeout: 5 * 1000,
 });
 ```
@@ -194,17 +182,15 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 ```ts
 const client = new ScaleWorkshop();
 
-const response = await client.evaluationDatasets
-  .create({ account_id: 'account_id', kind_schema: 'GENERATION', name: 'name', type: 'manual' })
-  .asResponse();
+const response = await client.evaluationDatasets.list().asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: evaluationDataset, response: raw } = await client.evaluationDatasets
-  .create({ account_id: 'account_id', kind_schema: 'GENERATION', name: 'name', type: 'manual' })
-  .withResponse();
+const { data: page, response: raw } = await client.evaluationDatasets.list().withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(evaluationDataset.id);
+for await (const evaluationDatasetListResponse of page) {
+  console.log(evaluationDatasetListResponse.id);
+}
 ```
 
 ### Making custom/undocumented requests
@@ -308,12 +294,9 @@ const client = new ScaleWorkshop({
 });
 
 // Override per-request:
-await client.evaluationDatasets.create(
-  { account_id: 'account_id', kind_schema: 'GENERATION', name: 'name', type: 'manual' },
-  {
-    httpAgent: new http.Agent({ keepAlive: false }),
-  },
-);
+await client.evaluationDatasets.list({
+  httpAgent: new http.Agent({ keepAlive: false }),
+});
 ```
 
 ## Semantic versioning

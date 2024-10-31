@@ -13,7 +13,6 @@ Types:
 
 Types:
 
-- <code><a href="./src/resources/evaluation-datasets/evaluation-datasets.ts">EvaluationDatasetCreateResponse</a></code>
 - <code><a href="./src/resources/evaluation-datasets/evaluation-datasets.ts">EvaluationDatasetRetrieveResponse</a></code>
 - <code><a href="./src/resources/evaluation-datasets/evaluation-datasets.ts">EvaluationDatasetUpdateResponse</a></code>
 - <code><a href="./src/resources/evaluation-datasets/evaluation-datasets.ts">EvaluationDatasetListResponse</a></code>
@@ -23,7 +22,6 @@ Types:
 
 Methods:
 
-- <code title="post /v4/evaluation-datasets">client.evaluationDatasets.<a href="./src/resources/evaluation-datasets/evaluation-datasets.ts">create</a>({ ...params }) -> EvaluationDatasetCreateResponse</code>
 - <code title="get /v4/evaluation-datasets/{evaluation_dataset_id}">client.evaluationDatasets.<a href="./src/resources/evaluation-datasets/evaluation-datasets.ts">retrieve</a>(evaluationDatasetId) -> EvaluationDatasetRetrieveResponse</code>
 - <code title="patch /v4/evaluation-datasets/{evaluation_dataset_id}">client.evaluationDatasets.<a href="./src/resources/evaluation-datasets/evaluation-datasets.ts">update</a>(evaluationDatasetId, { ...params }) -> EvaluationDatasetUpdateResponse</code>
 - <code title="get /v4/evaluation-datasets">client.evaluationDatasets.<a href="./src/resources/evaluation-datasets/evaluation-datasets.ts">list</a>({ ...params }) -> EvaluationDatasetListResponsesPageNumberPage</code>
