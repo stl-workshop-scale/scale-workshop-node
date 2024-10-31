@@ -11,15 +11,7 @@ export class EvaluationDatasets extends APIResource {
   testCases: TestCasesAPI.TestCases = new TestCasesAPI.TestCases(this._client);
 
   /**
-   * ### Description
-   *
-   * Creates a evaluation dataset
-   *
-   * ### Details
-   *
-   * This API can be used to create a evaluation dataset. To use this API, review the
-   * request schema and pass in all fields that are required to create a evaluation
-   * dataset.
+   * Create Evaluation Dataset
    */
   create(
     body: EvaluationDatasetCreateParams,
