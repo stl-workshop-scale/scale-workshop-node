@@ -55,12 +55,12 @@ $ cd stl-workshop-scale-20241031-node
 # With yarn
 $ yarn link
 $ cd ../my-package
-$ yarn link stl-workshop-scale-20241031
+$ yarn link scale-workshop
 
 # With pnpm
 $ pnpm link --global
 $ cd ../my-package
-$ pnpm link -—global stl-workshop-scale-20241031
+$ pnpm link -—global scale-workshop
 ```
 
 ## Running tests

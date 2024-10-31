@@ -5,8 +5,8 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "stl-workshop-scale-20241031/*": ["dist/src/*"],
-      "stl-workshop-scale-20241031": ["dist/src/index.ts"],
+      "scale-workshop/*": ["dist/src/*"],
+      "scale-workshop": ["dist/src/index.ts"],
     },
     "noEmit": false,
     "declaration": true,

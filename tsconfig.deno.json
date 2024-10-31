@@ -6,9 +6,9 @@
     "rootDir": "./deno",
     "lib": ["es2020", "DOM"],
     "paths": {
-      "stl-workshop-scale-20241031/_shims/auto/*": ["deno/_shims/auto/*-deno"],
-      "stl-workshop-scale-20241031/*": ["deno/*"],
-      "stl-workshop-scale-20241031": ["deno/index.ts"],
+      "scale-workshop/_shims/auto/*": ["deno/_shims/auto/*-deno"],
+      "scale-workshop/*": ["deno/*"],
+      "scale-workshop": ["deno/index.ts"],
     },
     "noEmit": true,
     "declaration": true,

@@ -42,12 +42,12 @@ export let isFsReadStream: Shims['isFsReadStream'] | undefined = undefined;
 export function setShims(shims: Shims, options: { auto: boolean } = { auto: false }) {
   if (auto) {
     throw new Error(
-      `you must \`import 'stl-workshop-scale-20241031/shims/${shims.kind}'\` before importing anything else from stl-workshop-scale-20241031`,
+      `you must \`import 'scale-workshop/shims/${shims.kind}'\` before importing anything else from scale-workshop`,
     );
   }
   if (kind) {
     throw new Error(
-      `can't \`import 'stl-workshop-scale-20241031/shims/${shims.kind}'\` after \`import 'stl-workshop-scale-20241031/shims/${kind}'\``,
+      `can't \`import 'scale-workshop/shims/${shims.kind}'\` after \`import 'scale-workshop/shims/${kind}'\``,
     );
   }
   auto = options.auto;

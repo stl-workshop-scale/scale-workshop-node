@@ -7,9 +7,9 @@ const config: JestConfigWithTsJest = {
     '^.+\\.(t|j)sx?$': ['@swc/jest', { sourceMaps: 'inline' }],
   },
   moduleNameMapper: {
-    '^stl-workshop-scale-20241031$': '<rootDir>/src/index.ts',
-    '^stl-workshop-scale-20241031/_shims/auto/(.*)$': '<rootDir>/src/_shims/auto/$1-node',
-    '^stl-workshop-scale-20241031/(.*)$': '<rootDir>/src/$1',
+    '^scale-workshop$': '<rootDir>/src/index.ts',
+    '^scale-workshop/_shims/auto/(.*)$': '<rootDir>/src/_shims/auto/$1-node',
+    '^scale-workshop/(.*)$': '<rootDir>/src/$1',
   },
   modulePathIgnorePatterns: [
     '<rootDir>/ecosystem-tests/',

@@ -1,6 +1,6 @@
 import fs from 'fs';
-import { toFile, type ResponseLike } from 'stl-workshop-scale-20241031/uploads';
-import { File } from 'stl-workshop-scale-20241031/_shims/index';
+import { toFile, type ResponseLike } from 'scale-workshop/uploads';
+import { File } from 'scale-workshop/_shims/index';
 
 class MyClass {
   name: string = 'foo';

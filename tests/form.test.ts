@@ -1,6 +1,6 @@
-import { multipartFormRequestOptions, createForm } from 'stl-workshop-scale-20241031/core';
-import { Blob } from 'stl-workshop-scale-20241031/_shims/index';
-import { toFile } from 'stl-workshop-scale-20241031';
+import { multipartFormRequestOptions, createForm } from 'scale-workshop/core';
+import { Blob } from 'scale-workshop/_shims/index';
+import { toFile } from 'scale-workshop';
 
 describe('form data validation', () => {
   test('valid values do not error', async () => {

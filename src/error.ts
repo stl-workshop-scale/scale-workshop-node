@@ -2,9 +2,9 @@
 
 import { castToError, Headers } from './core';
 
-export class StlWorkshopScale20241031Error extends Error {}
+export class ScaleWorkshopError extends Error {}
 
-export class APIError extends StlWorkshopScale20241031Error {
+export class APIError extends ScaleWorkshopError {
   readonly status: number | undefined;
   readonly headers: Headers | undefined;
   readonly error: Object | undefined;

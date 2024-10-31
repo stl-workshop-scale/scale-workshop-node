@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { StlWorkshopScale20241031 } from 'stl-workshop-scale-20241031';
+import { ScaleWorkshop } from 'scale-workshop';
 
-const { stringifyQuery } = StlWorkshopScale20241031.prototype as any;
+const { stringifyQuery } = ScaleWorkshop.prototype as any;
 
 describe(stringifyQuery, () => {
   for (const [input, expected] of [
