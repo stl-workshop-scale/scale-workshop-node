@@ -52,7 +52,7 @@ export interface EvaluationDatasetsTestCaseListResponse {
   /**
    * The number of items per page.
    */
-  items_per_page: number;
+  per_page: number;
 
   /**
    * The total number of items of the query
