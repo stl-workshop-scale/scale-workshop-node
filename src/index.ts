@@ -1,11 +1,26 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Errors from './error';
-import * as Uploads from './uploads';
 import { type Agent } from './_shims/index';
 import * as Core from './core';
+import * as Errors from './error';
 import * as Pagination from './pagination';
+import { type PageNumberPageParams, PageNumberPageResponse } from './pagination';
+import * as Uploads from './uploads';
 import * as API from './resources/index';
+import {
+  EvaluationDatasetApproveBatchParams,
+  EvaluationDatasetApproveBatchResponse,
+  EvaluationDatasetListParams,
+  EvaluationDatasetListResponse,
+  EvaluationDatasetListResponsesPageNumberPage,
+  EvaluationDatasetPublishParams,
+  EvaluationDatasetPublishResponse,
+  EvaluationDatasetRemoveResponse,
+  EvaluationDatasetRetrieveResponse,
+  EvaluationDatasetUpdateParams,
+  EvaluationDatasetUpdateResponse,
+  EvaluationDatasets,
+} from './resources/evaluation-datasets/evaluation-datasets';
 
 export interface ClientOptions {
   /**
@@ -158,51 +173,56 @@ export class ScaleWorkshop extends Core.APIClient {
   static fileFromPath = Uploads.fileFromPath;
 }
 
-export const {
-  ScaleWorkshopError,
-  APIError,
-  APIConnectionError,
-  APIConnectionTimeoutError,
-  APIUserAbortError,
-  NotFoundError,
-  ConflictError,
-  RateLimitError,
-  BadRequestError,
-  AuthenticationError,
-  InternalServerError,
-  PermissionDeniedError,
-  UnprocessableEntityError,
-} = Errors;
+export const ScaleWorkshopError = Errors.ScaleWorkshopError;
+export const APIError = Errors.APIError;
+export const APIConnectionError = Errors.APIConnectionError;
+export const APIConnectionTimeoutError = Errors.APIConnectionTimeoutError;
+export const APIUserAbortError = Errors.APIUserAbortError;
+export const NotFoundError = Errors.NotFoundError;
+export const ConflictError = Errors.ConflictError;
+export const RateLimitError = Errors.RateLimitError;
+export const BadRequestError = Errors.BadRequestError;
+export const AuthenticationError = Errors.AuthenticationError;
+export const InternalServerError = Errors.InternalServerError;
+export const PermissionDeniedError = Errors.PermissionDeniedError;
+export const UnprocessableEntityError = Errors.UnprocessableEntityError;
 
 export import toFile = Uploads.toFile;
 export import fileFromPath = Uploads.fileFromPath;
 
-export namespace ScaleWorkshop {
-  export import RequestOptions = Core.RequestOptions;
+ScaleWorkshop.EvaluationDatasets = EvaluationDatasets;
+ScaleWorkshop.EvaluationDatasetListResponsesPageNumberPage = EvaluationDatasetListResponsesPageNumberPage;
+
+export declare namespace ScaleWorkshop {
+  export type RequestOptions = Core.RequestOptions;
 
   export import PageNumberPage = Pagination.PageNumberPage;
-  export import PageNumberPageParams = Pagination.PageNumberPageParams;
-  export import PageNumberPageResponse = Pagination.PageNumberPageResponse;
+  export {
+    type PageNumberPageParams as PageNumberPageParams,
+    type PageNumberPageResponse as PageNumberPageResponse,
+  };
 
-  export import EvaluationDatasets = API.EvaluationDatasets;
-  export import EvaluationDatasetRetrieveResponse = API.EvaluationDatasetRetrieveResponse;
-  export import EvaluationDatasetUpdateResponse = API.EvaluationDatasetUpdateResponse;
-  export import EvaluationDatasetListResponse = API.EvaluationDatasetListResponse;
-  export import EvaluationDatasetApproveBatchResponse = API.EvaluationDatasetApproveBatchResponse;
-  export import EvaluationDatasetPublishResponse = API.EvaluationDatasetPublishResponse;
-  export import EvaluationDatasetRemoveResponse = API.EvaluationDatasetRemoveResponse;
-  export import EvaluationDatasetListResponsesPageNumberPage = API.EvaluationDatasetListResponsesPageNumberPage;
-  export import EvaluationDatasetUpdateParams = API.EvaluationDatasetUpdateParams;
-  export import EvaluationDatasetListParams = API.EvaluationDatasetListParams;
-  export import EvaluationDatasetApproveBatchParams = API.EvaluationDatasetApproveBatchParams;
-  export import EvaluationDatasetPublishParams = API.EvaluationDatasetPublishParams;
+  export {
+    EvaluationDatasets as EvaluationDatasets,
+    type EvaluationDatasetRetrieveResponse as EvaluationDatasetRetrieveResponse,
+    type EvaluationDatasetUpdateResponse as EvaluationDatasetUpdateResponse,
+    type EvaluationDatasetListResponse as EvaluationDatasetListResponse,
+    type EvaluationDatasetApproveBatchResponse as EvaluationDatasetApproveBatchResponse,
+    type EvaluationDatasetPublishResponse as EvaluationDatasetPublishResponse,
+    type EvaluationDatasetRemoveResponse as EvaluationDatasetRemoveResponse,
+    EvaluationDatasetListResponsesPageNumberPage as EvaluationDatasetListResponsesPageNumberPage,
+    type EvaluationDatasetUpdateParams as EvaluationDatasetUpdateParams,
+    type EvaluationDatasetListParams as EvaluationDatasetListParams,
+    type EvaluationDatasetApproveBatchParams as EvaluationDatasetApproveBatchParams,
+    type EvaluationDatasetPublishParams as EvaluationDatasetPublishParams,
+  };
 
-  export import AssistantMessage = API.AssistantMessage;
-  export import ChatMessage = API.ChatMessage;
-  export import FlexibleChunk = API.FlexibleChunk;
-  export import StringExtraInfoSchema = API.StringExtraInfoSchema;
-  export import SystemMessage = API.SystemMessage;
-  export import UserMessage = API.UserMessage;
+  export type AssistantMessage = API.AssistantMessage;
+  export type ChatMessage = API.ChatMessage;
+  export type FlexibleChunk = API.FlexibleChunk;
+  export type StringExtraInfoSchema = API.StringExtraInfoSchema;
+  export type SystemMessage = API.SystemMessage;
+  export type UserMessage = API.UserMessage;
 }
 
 export default ScaleWorkshop;

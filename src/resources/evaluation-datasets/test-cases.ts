@@ -322,19 +322,23 @@ export namespace TestCaseBatchParams {
   }
 }
 
-export namespace TestCases {
-  export import ArtifactSchemaGeneration = TestCasesAPI.ArtifactSchemaGeneration;
-  export import FlexibleTestCaseSchema = TestCasesAPI.FlexibleTestCaseSchema;
-  export import FlexibleTestCaseVersion = TestCasesAPI.FlexibleTestCaseVersion;
-  export import GenerationTestCaseSchema = TestCasesAPI.GenerationTestCaseSchema;
-  export import GenerationTestCaseVersion = TestCasesAPI.GenerationTestCaseVersion;
-  export import PaginatedTestCases = TestCasesAPI.PaginatedTestCases;
-  export import TestCase = TestCasesAPI.TestCase;
-  export import TestCaseDeleteResponse = TestCasesAPI.TestCaseDeleteResponse;
-  export import TestCaseBatchResponse = TestCasesAPI.TestCaseBatchResponse;
-  export import TestCasesPageNumberPage = TestCasesAPI.TestCasesPageNumberPage;
-  export import TestCaseCreateParams = TestCasesAPI.TestCaseCreateParams;
-  export import TestCaseUpdateParams = TestCasesAPI.TestCaseUpdateParams;
-  export import TestCaseListParams = TestCasesAPI.TestCaseListParams;
-  export import TestCaseBatchParams = TestCasesAPI.TestCaseBatchParams;
+TestCases.TestCasesPageNumberPage = TestCasesPageNumberPage;
+
+export declare namespace TestCases {
+  export {
+    type ArtifactSchemaGeneration as ArtifactSchemaGeneration,
+    type FlexibleTestCaseSchema as FlexibleTestCaseSchema,
+    type FlexibleTestCaseVersion as FlexibleTestCaseVersion,
+    type GenerationTestCaseSchema as GenerationTestCaseSchema,
+    type GenerationTestCaseVersion as GenerationTestCaseVersion,
+    type PaginatedTestCases as PaginatedTestCases,
+    type TestCase as TestCase,
+    type TestCaseDeleteResponse as TestCaseDeleteResponse,
+    type TestCaseBatchResponse as TestCaseBatchResponse,
+    TestCasesPageNumberPage as TestCasesPageNumberPage,
+    type TestCaseCreateParams as TestCaseCreateParams,
+    type TestCaseUpdateParams as TestCaseUpdateParams,
+    type TestCaseListParams as TestCaseListParams,
+    type TestCaseBatchParams as TestCaseBatchParams,
+  };
 }
