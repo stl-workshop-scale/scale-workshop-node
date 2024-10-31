@@ -11,7 +11,7 @@ It is generated with [Stainless](https://www.stainlessapi.com/).
 ## Installation
 
 ```sh
-npm install git+ssh://git@github.com:stainless-sdks/stl-workshop-scale-20241031-node.git
+npm install git+ssh://git@github.com:stl-workshop-scale/scale-workshop-node.git
 ```
 
 > [!NOTE]
@@ -25,17 +25,15 @@ The full API of this library can be found in [api.md](api.md).
 ```js
 import ScaleWorkshop from 'scale-workshop';
 
-const client = new ScaleWorkshop();
+const client = new ScaleWorkshop({
+  apiKey: process.env['AWESOME_COMPANY_API_KEY'], // This is the default and can be omitted
+});
 
 async function main() {
-  const evaluationDatasetResponseSchema = await client.evaluationDatasets.create({
-    account_id: 'account_id',
-    name: 'name',
-    schema_type: 'GENERATION',
-    type: 'manual',
-  });
+  const page = await client.evaluationDatasets.list();
+  const evaluationDatasetListResponse = page.items[0];
 
-  console.log(evaluationDatasetResponseSchema.id);
+  console.log(evaluationDatasetListResponse.id);
 }
 
 main();
@@ -49,17 +47,13 @@ This library includes TypeScript definitions for all request params and response
 ```ts
 import ScaleWorkshop from 'scale-workshop';
 
-const client = new ScaleWorkshop();
+const client = new ScaleWorkshop({
+  apiKey: process.env['AWESOME_COMPANY_API_KEY'], // This is the default and can be omitted
+});
 
 async function main() {
-  const params: ScaleWorkshop.EvaluationDatasetCreateParams = {
-    account_id: 'account_id',
-    name: 'name',
-    schema_type: 'GENERATION',
-    type: 'manual',
-  };
-  const evaluationDatasetResponseSchema: ScaleWorkshop.EvaluationDatasetResponseSchema =
-    await client.evaluationDatasets.create(params);
+  const [evaluationDatasetListResponse]: [ScaleWorkshop.EvaluationDatasetListResponse] =
+    await client.evaluationDatasets.list();
 }
 
 main();
@@ -76,17 +70,15 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const evaluationDatasetResponseSchema = await client.evaluationDatasets
-    .create({ account_id: 'account_id', name: 'name', schema_type: 'GENERATION', type: 'manual' })
-    .catch(async (err) => {
-      if (err instanceof ScaleWorkshop.APIError) {
-        console.log(err.status); // 400
-        console.log(err.name); // BadRequestError
-        console.log(err.headers); // {server: 'nginx', ...}
-      } else {
-        throw err;
-      }
-    });
+  const page = await client.evaluationDatasets.list().catch(async (err) => {
+    if (err instanceof ScaleWorkshop.APIError) {
+      console.log(err.status); // 400
+      console.log(err.name); // BadRequestError
+      console.log(err.headers); // {server: 'nginx', ...}
+    } else {
+      throw err;
+    }
+  });
 }
 
 main();
@@ -118,11 +110,10 @@ You can use the `maxRetries` option to configure or disable this:
 // Configure the default for all requests:
 const client = new ScaleWorkshop({
   maxRetries: 0, // default is 2
-  apiKey: 'My API Key',
 });
 
 // Or, configure per-request:
-await client.evaluationDatasets.create({ account_id: 'account_id', name: 'name', schema_type: 'GENERATION', type: 'manual' }, {
+await client.evaluationDatasets.list({
   maxRetries: 5,
 });
 ```
@@ -136,11 +127,10 @@ Requests time out after 1 minute by default. You can configure this with a `time
 // Configure the default for all requests:
 const client = new ScaleWorkshop({
   timeout: 20 * 1000, // 20 seconds (default is 1 minute)
-  apiKey: 'My API Key',
 });
 
 // Override per-request:
-await client.evaluationDatasets.create({ account_id: 'account_id', name: 'name', schema_type: 'GENERATION', type: 'manual' }, {
+await client.evaluationDatasets.list({
   timeout: 5 * 1000,
 });
 ```
@@ -148,6 +138,37 @@ await client.evaluationDatasets.create({ account_id: 'account_id', name: 'name',
 On timeout, an `APIConnectionTimeoutError` is thrown.
 
 Note that requests which time out will be [retried twice by default](#retries).
+
+## Auto-pagination
+
+List methods in the ScaleWorkshop API are paginated.
+You can use the `for await … of` syntax to iterate through items across all pages:
+
+```ts
+async function fetchAllEvaluationDatasets(params) {
+  const allEvaluationDatasets = [];
+  // Automatically fetches more pages as needed.
+  for await (const evaluationDatasetListResponse of client.evaluationDatasets.list()) {
+    allEvaluationDatasets.push(evaluationDatasetListResponse);
+  }
+  return allEvaluationDatasets;
+}
+```
+
+Alternatively, you can request a single page at a time:
+
+```ts
+let page = await client.evaluationDatasets.list();
+for (const evaluationDatasetListResponse of page.items) {
+  console.log(evaluationDatasetListResponse);
+}
+
+// Convenience methods are provided for manually paginating:
+while (page.hasNextPage()) {
+  page = page.getNextPage();
+  // ...
+}
+```
 
 ## Advanced Usage
 
@@ -161,17 +182,15 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 ```ts
 const client = new ScaleWorkshop();
 
-const response = await client.evaluationDatasets
-  .create({ account_id: 'account_id', name: 'name', schema_type: 'GENERATION', type: 'manual' })
-  .asResponse();
+const response = await client.evaluationDatasets.list().asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: evaluationDatasetResponseSchema, response: raw } = await client.evaluationDatasets
-  .create({ account_id: 'account_id', name: 'name', schema_type: 'GENERATION', type: 'manual' })
-  .withResponse();
+const { data: page, response: raw } = await client.evaluationDatasets.list().withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(evaluationDatasetResponseSchema.id);
+for await (const evaluationDatasetListResponse of page) {
+  console.log(evaluationDatasetListResponse.id);
+}
 ```
 
 ### Making custom/undocumented requests
@@ -234,7 +253,7 @@ import ScaleWorkshop from 'scale-workshop';
 ```
 
 To do the inverse, add `import "scale-workshop/shims/node"` (which does import polyfills).
-This can also be useful if you are getting the wrong TypeScript types for `Response` ([more details](https://github.com/stainless-sdks/stl-workshop-scale-20241031-node/tree/main/src/_shims#readme)).
+This can also be useful if you are getting the wrong TypeScript types for `Response` ([more details](https://github.com/stl-workshop-scale/scale-workshop-node/tree/main/src/_shims#readme)).
 
 ### Logging and middleware
 
@@ -272,16 +291,12 @@ import { HttpsProxyAgent } from 'https-proxy-agent';
 // Configure the default for all requests:
 const client = new ScaleWorkshop({
   httpAgent: new HttpsProxyAgent(process.env.PROXY_URL),
-  apiKey: 'My API Key',
 });
 
 // Override per-request:
-await client.evaluationDatasets.create(
-  { account_id: 'account_id', name: 'name', schema_type: 'GENERATION', type: 'manual' },
-  {
-    httpAgent: new http.Agent({ keepAlive: false }),
-  },
-);
+await client.evaluationDatasets.list({
+  httpAgent: new http.Agent({ keepAlive: false }),
+});
 ```
 
 ## Semantic versioning
@@ -294,7 +309,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/stl-workshop-scale-20241031-node/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/stl-workshop-scale/scale-workshop-node/issues) with questions, bugs, or suggestions.
 
 ## Requirements
 

@@ -8,13 +8,10 @@ const client = new ScaleWorkshop({
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource evaluationDatasets', () => {
+describe('resource testCases', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.evaluationDatasets.create({
-      account_id: 'account_id',
-      name: 'name',
-      schema_type: 'GENERATION',
-      type: 'manual',
+    const responsePromise = client.evaluationDatasets.testCases.create('evaluation_dataset_id', {
+      test_case_data: { artifact_ids_filter: ['string', 'string', 'string'], input: 'input' },
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -26,16 +23,22 @@ describe('resource evaluationDatasets', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await client.evaluationDatasets.create({
+    const response = await client.evaluationDatasets.testCases.create('evaluation_dataset_id', {
+      test_case_data: {
+        artifact_ids_filter: ['string', 'string', 'string'],
+        input: 'input',
+        expected_extra_info: { info: 'info', kind_schema: 'STRING' },
+        expected_output: 'expected_output',
+      },
       account_id: 'account_id',
-      name: 'name',
-      schema_type: 'GENERATION',
-      type: 'manual',
     });
   });
 
   test('retrieve', async () => {
-    const responsePromise = client.evaluationDatasets.retrieve('evaluation_dataset_id');
+    const responsePromise = client.evaluationDatasets.testCases.retrieve(
+      'evaluation_dataset_id',
+      'test_case_id',
+    );
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -48,15 +51,18 @@ describe('resource evaluationDatasets', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.evaluationDatasets.retrieve('evaluation_dataset_id', { path: '/_stainless_unknown_path' }),
+      client.evaluationDatasets.testCases.retrieve('evaluation_dataset_id', 'test_case_id', {
+        path: '/_stainless_unknown_path',
+      }),
     ).rejects.toThrow(ScaleWorkshop.NotFoundError);
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.evaluationDatasets.update('evaluation_dataset_id', {
-      name: 'name',
-      restore: false,
-    });
+    const responsePromise = client.evaluationDatasets.testCases.update(
+      'evaluation_dataset_id',
+      'test_case_id',
+      { restore: false },
+    );
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -67,14 +73,24 @@ describe('resource evaluationDatasets', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.evaluationDatasets.update('evaluation_dataset_id', {
-      name: 'name',
-      restore: false,
-    });
+    const response = await client.evaluationDatasets.testCases.update(
+      'evaluation_dataset_id',
+      'test_case_id',
+      {
+        restore: false,
+        account_id: 'account_id',
+        test_case_data: {
+          artifact_ids_filter: ['string', 'string', 'string'],
+          input: 'input',
+          expected_extra_info: { info: 'info', kind_schema: 'STRING' },
+          expected_output: 'expected_output',
+        },
+      },
+    );
   });
 
   test('list', async () => {
-    const responsePromise = client.evaluationDatasets.list();
+    const responsePromise = client.evaluationDatasets.testCases.list('evaluation_dataset_id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -86,15 +102,16 @@ describe('resource evaluationDatasets', () => {
 
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.evaluationDatasets.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      ScaleWorkshop.NotFoundError,
-    );
+    await expect(
+      client.evaluationDatasets.testCases.list('evaluation_dataset_id', { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(ScaleWorkshop.NotFoundError);
   });
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.evaluationDatasets.list(
+      client.evaluationDatasets.testCases.list(
+        'evaluation_dataset_id',
         { account_id: 'account_id', include_archived: true, limit: 1, page: 1 },
         { path: '/_stainless_unknown_path' },
       ),
@@ -102,7 +119,10 @@ describe('resource evaluationDatasets', () => {
   });
 
   test('delete', async () => {
-    const responsePromise = client.evaluationDatasets.delete('evaluation_dataset_id');
+    const responsePromise = client.evaluationDatasets.testCases.delete(
+      'evaluation_dataset_id',
+      'test_case_id',
+    );
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -115,14 +135,18 @@ describe('resource evaluationDatasets', () => {
   test('delete: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.evaluationDatasets.delete('evaluation_dataset_id', { path: '/_stainless_unknown_path' }),
+      client.evaluationDatasets.testCases.delete('evaluation_dataset_id', 'test_case_id', {
+        path: '/_stainless_unknown_path',
+      }),
     ).rejects.toThrow(ScaleWorkshop.NotFoundError);
   });
 
-  test('approveBatch: only required params', async () => {
-    const responsePromise = client.evaluationDatasets.approveBatch('evaluation_dataset_id', {
-      autogenerated_draft_test_cases: ['string', 'string', 'string'],
-    });
+  test('batch: only required params', async () => {
+    const responsePromise = client.evaluationDatasets.testCases.batch('evaluation_dataset_id', [
+      { test_case_data: { artifact_ids_filter: ['string', 'string', 'string'], input: 'input' } },
+      { test_case_data: { artifact_ids_filter: ['string', 'string', 'string'], input: 'input' } },
+      { test_case_data: { artifact_ids_filter: ['string', 'string', 'string'], input: 'input' } },
+    ]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -132,39 +156,35 @@ describe('resource evaluationDatasets', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('approveBatch: required and optional params', async () => {
-    const response = await client.evaluationDatasets.approveBatch('evaluation_dataset_id', {
-      autogenerated_draft_test_cases: ['string', 'string', 'string'],
-      force: true,
-    });
-  });
-
-  test('publish', async () => {
-    const responsePromise = client.evaluationDatasets.publish('evaluation_dataset_id');
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('publish: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.evaluationDatasets.publish('evaluation_dataset_id', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(ScaleWorkshop.NotFoundError);
-  });
-
-  test('publish: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.evaluationDatasets.publish(
-        'evaluation_dataset_id',
-        { force: true },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(ScaleWorkshop.NotFoundError);
+  test('batch: required and optional params', async () => {
+    const response = await client.evaluationDatasets.testCases.batch('evaluation_dataset_id', [
+      {
+        test_case_data: {
+          artifact_ids_filter: ['string', 'string', 'string'],
+          input: 'input',
+          expected_extra_info: { info: 'info', kind_schema: 'STRING' },
+          expected_output: 'expected_output',
+        },
+        account_id: 'account_id',
+      },
+      {
+        test_case_data: {
+          artifact_ids_filter: ['string', 'string', 'string'],
+          input: 'input',
+          expected_extra_info: { info: 'info', kind_schema: 'STRING' },
+          expected_output: 'expected_output',
+        },
+        account_id: 'account_id',
+      },
+      {
+        test_case_data: {
+          artifact_ids_filter: ['string', 'string', 'string'],
+          input: 'input',
+          expected_extra_info: { info: 'info', kind_schema: 'STRING' },
+          expected_output: 'expected_output',
+        },
+        account_id: 'account_id',
+      },
+    ]);
   });
 });

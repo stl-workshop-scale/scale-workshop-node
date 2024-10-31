@@ -1,6 +1,5 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export * from './shared';
 export {
   EvaluationDatasetListResponsesPageNumberPage,
   EvaluationDatasets,
@@ -14,4 +13,21 @@ export {
   type EvaluationDatasetListParams,
   type EvaluationDatasetApproveBatchParams,
   type EvaluationDatasetPublishParams,
-} from './evaluation-datasets/evaluation-datasets';
+} from './evaluation-datasets';
+export {
+  TestCasesPageNumberPage,
+  TestCases,
+  type ArtifactSchemaGeneration,
+  type FlexibleTestCaseSchema,
+  type FlexibleTestCaseVersion,
+  type GenerationTestCaseSchema,
+  type GenerationTestCaseVersion,
+  type PaginatedTestCases,
+  type TestCase,
+  type TestCaseDeleteResponse,
+  type TestCaseBatchResponse,
+  type TestCaseCreateParams,
+  type TestCaseUpdateParams,
+  type TestCaseListParams,
+  type TestCaseBatchParams,
+} from './test-cases';
