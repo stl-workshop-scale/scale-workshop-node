@@ -28,9 +28,14 @@ import ScaleWorkshop from 'scale-workshop';
 const client = new ScaleWorkshop();
 
 async function main() {
-  const response = await client.myResourceName.myMethod();
+  const evaluationDatasetResponseSchema = await client.evaluationDatasets.create({
+    account_id: 'account_id',
+    name: 'name',
+    schema_type: 'GENERATION',
+    type: 'manual',
+  });
 
-  console.log(response.current_page);
+  console.log(evaluationDatasetResponseSchema.id);
 }
 
 main();
@@ -47,7 +52,14 @@ import ScaleWorkshop from 'scale-workshop';
 const client = new ScaleWorkshop();
 
 async function main() {
-  const response: ScaleWorkshop.MyResourceNameMyMethodResponse = await client.myResourceName.myMethod();
+  const params: ScaleWorkshop.EvaluationDatasetCreateParams = {
+    account_id: 'account_id',
+    name: 'name',
+    schema_type: 'GENERATION',
+    type: 'manual',
+  };
+  const evaluationDatasetResponseSchema: ScaleWorkshop.EvaluationDatasetResponseSchema =
+    await client.evaluationDatasets.create(params);
 }
 
 main();
@@ -64,15 +76,17 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const response = await client.myResourceName.myMethod().catch(async (err) => {
-    if (err instanceof ScaleWorkshop.APIError) {
-      console.log(err.status); // 400
-      console.log(err.name); // BadRequestError
-      console.log(err.headers); // {server: 'nginx', ...}
-    } else {
-      throw err;
-    }
-  });
+  const evaluationDatasetResponseSchema = await client.evaluationDatasets
+    .create({ account_id: 'account_id', name: 'name', schema_type: 'GENERATION', type: 'manual' })
+    .catch(async (err) => {
+      if (err instanceof ScaleWorkshop.APIError) {
+        console.log(err.status); // 400
+        console.log(err.name); // BadRequestError
+        console.log(err.headers); // {server: 'nginx', ...}
+      } else {
+        throw err;
+      }
+    });
 }
 
 main();
@@ -104,10 +118,11 @@ You can use the `maxRetries` option to configure or disable this:
 // Configure the default for all requests:
 const client = new ScaleWorkshop({
   maxRetries: 0, // default is 2
+  apiKey: 'My API Key',
 });
 
 // Or, configure per-request:
-await client.myResourceName.myMethod({
+await client.evaluationDatasets.create({ account_id: 'account_id', name: 'name', schema_type: 'GENERATION', type: 'manual' }, {
   maxRetries: 5,
 });
 ```
@@ -121,10 +136,11 @@ Requests time out after 1 minute by default. You can configure this with a `time
 // Configure the default for all requests:
 const client = new ScaleWorkshop({
   timeout: 20 * 1000, // 20 seconds (default is 1 minute)
+  apiKey: 'My API Key',
 });
 
 // Override per-request:
-await client.myResourceName.myMethod({
+await client.evaluationDatasets.create({ account_id: 'account_id', name: 'name', schema_type: 'GENERATION', type: 'manual' }, {
   timeout: 5 * 1000,
 });
 ```
@@ -145,13 +161,17 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 ```ts
 const client = new ScaleWorkshop();
 
-const response = await client.myResourceName.myMethod().asResponse();
+const response = await client.evaluationDatasets
+  .create({ account_id: 'account_id', name: 'name', schema_type: 'GENERATION', type: 'manual' })
+  .asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: response, response: raw } = await client.myResourceName.myMethod().withResponse();
+const { data: evaluationDatasetResponseSchema, response: raw } = await client.evaluationDatasets
+  .create({ account_id: 'account_id', name: 'name', schema_type: 'GENERATION', type: 'manual' })
+  .withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(response.current_page);
+console.log(evaluationDatasetResponseSchema.id);
 ```
 
 ### Making custom/undocumented requests
@@ -252,12 +272,16 @@ import { HttpsProxyAgent } from 'https-proxy-agent';
 // Configure the default for all requests:
 const client = new ScaleWorkshop({
   httpAgent: new HttpsProxyAgent(process.env.PROXY_URL),
+  apiKey: 'My API Key',
 });
 
 // Override per-request:
-await client.myResourceName.myMethod({
-  httpAgent: new http.Agent({ keepAlive: false }),
-});
+await client.evaluationDatasets.create(
+  { account_id: 'account_id', name: 'name', schema_type: 'GENERATION', type: 'manual' },
+  {
+    httpAgent: new http.Agent({ keepAlive: false }),
+  },
+);
 ```
 
 ## Semantic versioning
