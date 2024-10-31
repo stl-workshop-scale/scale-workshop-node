@@ -42,15 +42,15 @@ If you’d like to use the repository from source, you can either install from g
 To install via git:
 
 ```sh
-$ npm install git+ssh://git@github.com:stl-workshop-scale/scale-workshop-node.git
+$ npm install git+ssh://git@github.com:stainless-sdks/stl-workshop-scale-20241031-node.git
 ```
 
 Alternatively, to link a local copy of the repo:
 
 ```sh
 # Clone
-$ git clone https://www.github.com/stl-workshop-scale/scale-workshop-node
-$ cd scale-workshop-node
+$ git clone https://www.github.com/stainless-sdks/stl-workshop-scale-20241031-node
+$ cd stl-workshop-scale-20241031-node
 
 # With yarn
 $ yarn link
@@ -99,7 +99,7 @@ the changes aren't made through the automated pipeline, you may want to make rel
 
 ### Publish with a GitHub workflow
 
-You can release to package managers by using [the `Publish NPM` GitHub action](https://www.github.com/stl-workshop-scale/scale-workshop-node/actions/workflows/publish-npm.yml). This requires a setup organization or repository secret to be set up.
+You can release to package managers by using [the `Publish NPM` GitHub action](https://www.github.com/stainless-sdks/stl-workshop-scale-20241031-node/actions/workflows/publish-npm.yml). This requires a setup organization or repository secret to be set up.
 
 ### Publish manually
 
