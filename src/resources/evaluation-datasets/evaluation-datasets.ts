@@ -3,8 +3,24 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
-import * as EvaluationDatasetsAPI from './evaluation-datasets';
 import * as TestCasesAPI from './test-cases';
+import {
+  ArtifactSchemaGeneration,
+  FlexibleTestCaseSchema,
+  FlexibleTestCaseVersion,
+  GenerationTestCaseSchema,
+  GenerationTestCaseVersion,
+  PaginatedTestCases,
+  TestCase,
+  TestCaseBatchParams,
+  TestCaseBatchResponse,
+  TestCaseCreateParams,
+  TestCaseDeleteResponse,
+  TestCaseListParams,
+  TestCaseUpdateParams,
+  TestCases,
+  TestCasesPageNumberPage,
+} from './test-cases';
 import { PageNumberPage, type PageNumberPageParams } from '../../pagination';
 
 export class EvaluationDatasets extends APIResource {
@@ -586,31 +602,41 @@ export interface EvaluationDatasetPublishParams {
   force?: boolean;
 }
 
-export namespace EvaluationDatasets {
-  export import EvaluationDatasetRetrieveResponse = EvaluationDatasetsAPI.EvaluationDatasetRetrieveResponse;
-  export import EvaluationDatasetUpdateResponse = EvaluationDatasetsAPI.EvaluationDatasetUpdateResponse;
-  export import EvaluationDatasetListResponse = EvaluationDatasetsAPI.EvaluationDatasetListResponse;
-  export import EvaluationDatasetApproveBatchResponse = EvaluationDatasetsAPI.EvaluationDatasetApproveBatchResponse;
-  export import EvaluationDatasetPublishResponse = EvaluationDatasetsAPI.EvaluationDatasetPublishResponse;
-  export import EvaluationDatasetRemoveResponse = EvaluationDatasetsAPI.EvaluationDatasetRemoveResponse;
-  export import EvaluationDatasetListResponsesPageNumberPage = EvaluationDatasetsAPI.EvaluationDatasetListResponsesPageNumberPage;
-  export import EvaluationDatasetUpdateParams = EvaluationDatasetsAPI.EvaluationDatasetUpdateParams;
-  export import EvaluationDatasetListParams = EvaluationDatasetsAPI.EvaluationDatasetListParams;
-  export import EvaluationDatasetApproveBatchParams = EvaluationDatasetsAPI.EvaluationDatasetApproveBatchParams;
-  export import EvaluationDatasetPublishParams = EvaluationDatasetsAPI.EvaluationDatasetPublishParams;
-  export import TestCases = TestCasesAPI.TestCases;
-  export import ArtifactSchemaGeneration = TestCasesAPI.ArtifactSchemaGeneration;
-  export import FlexibleTestCaseSchema = TestCasesAPI.FlexibleTestCaseSchema;
-  export import FlexibleTestCaseVersion = TestCasesAPI.FlexibleTestCaseVersion;
-  export import GenerationTestCaseSchema = TestCasesAPI.GenerationTestCaseSchema;
-  export import GenerationTestCaseVersion = TestCasesAPI.GenerationTestCaseVersion;
-  export import PaginatedTestCases = TestCasesAPI.PaginatedTestCases;
-  export import TestCase = TestCasesAPI.TestCase;
-  export import TestCaseDeleteResponse = TestCasesAPI.TestCaseDeleteResponse;
-  export import TestCaseBatchResponse = TestCasesAPI.TestCaseBatchResponse;
-  export import TestCasesPageNumberPage = TestCasesAPI.TestCasesPageNumberPage;
-  export import TestCaseCreateParams = TestCasesAPI.TestCaseCreateParams;
-  export import TestCaseUpdateParams = TestCasesAPI.TestCaseUpdateParams;
-  export import TestCaseListParams = TestCasesAPI.TestCaseListParams;
-  export import TestCaseBatchParams = TestCasesAPI.TestCaseBatchParams;
+EvaluationDatasets.EvaluationDatasetListResponsesPageNumberPage =
+  EvaluationDatasetListResponsesPageNumberPage;
+EvaluationDatasets.TestCases = TestCases;
+EvaluationDatasets.TestCasesPageNumberPage = TestCasesPageNumberPage;
+
+export declare namespace EvaluationDatasets {
+  export {
+    type EvaluationDatasetRetrieveResponse as EvaluationDatasetRetrieveResponse,
+    type EvaluationDatasetUpdateResponse as EvaluationDatasetUpdateResponse,
+    type EvaluationDatasetListResponse as EvaluationDatasetListResponse,
+    type EvaluationDatasetApproveBatchResponse as EvaluationDatasetApproveBatchResponse,
+    type EvaluationDatasetPublishResponse as EvaluationDatasetPublishResponse,
+    type EvaluationDatasetRemoveResponse as EvaluationDatasetRemoveResponse,
+    EvaluationDatasetListResponsesPageNumberPage as EvaluationDatasetListResponsesPageNumberPage,
+    type EvaluationDatasetUpdateParams as EvaluationDatasetUpdateParams,
+    type EvaluationDatasetListParams as EvaluationDatasetListParams,
+    type EvaluationDatasetApproveBatchParams as EvaluationDatasetApproveBatchParams,
+    type EvaluationDatasetPublishParams as EvaluationDatasetPublishParams,
+  };
+
+  export {
+    TestCases as TestCases,
+    type ArtifactSchemaGeneration as ArtifactSchemaGeneration,
+    type FlexibleTestCaseSchema as FlexibleTestCaseSchema,
+    type FlexibleTestCaseVersion as FlexibleTestCaseVersion,
+    type GenerationTestCaseSchema as GenerationTestCaseSchema,
+    type GenerationTestCaseVersion as GenerationTestCaseVersion,
+    type PaginatedTestCases as PaginatedTestCases,
+    type TestCase as TestCase,
+    type TestCaseDeleteResponse as TestCaseDeleteResponse,
+    type TestCaseBatchResponse as TestCaseBatchResponse,
+    TestCasesPageNumberPage as TestCasesPageNumberPage,
+    type TestCaseCreateParams as TestCaseCreateParams,
+    type TestCaseUpdateParams as TestCaseUpdateParams,
+    type TestCaseListParams as TestCaseListParams,
+    type TestCaseBatchParams as TestCaseBatchParams,
+  };
 }
