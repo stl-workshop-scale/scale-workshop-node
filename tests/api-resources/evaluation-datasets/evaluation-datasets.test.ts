@@ -12,8 +12,8 @@ describe('resource evaluationDatasets', () => {
   test('create: only required params', async () => {
     const responsePromise = client.evaluationDatasets.create({
       account_id: 'account_id',
+      kind_schema: 'GENERATION',
       name: 'name',
-      schema_type: 'GENERATION',
       type: 'manual',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -28,8 +28,8 @@ describe('resource evaluationDatasets', () => {
   test('create: required and optional params', async () => {
     const response = await client.evaluationDatasets.create({
       account_id: 'account_id',
+      kind_schema: 'GENERATION',
       name: 'name',
-      schema_type: 'GENERATION',
       type: 'manual',
     });
   });

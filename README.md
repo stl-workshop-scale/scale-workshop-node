@@ -32,8 +32,8 @@ const client = new ScaleWorkshop({
 async function main() {
   const evaluationDataset = await client.evaluationDatasets.create({
     account_id: 'account_id',
+    kind_schema: 'GENERATION',
     name: 'name',
-    schema_type: 'GENERATION',
     type: 'manual',
   });
 
@@ -58,8 +58,8 @@ const client = new ScaleWorkshop({
 async function main() {
   const params: ScaleWorkshop.EvaluationDatasetCreateParams = {
     account_id: 'account_id',
+    kind_schema: 'GENERATION',
     name: 'name',
-    schema_type: 'GENERATION',
     type: 'manual',
   };
   const evaluationDataset: ScaleWorkshop.EvaluationDatasetCreateResponse =
@@ -81,7 +81,7 @@ a subclass of `APIError` will be thrown:
 ```ts
 async function main() {
   const evaluationDataset = await client.evaluationDatasets
-    .create({ account_id: 'account_id', name: 'name', schema_type: 'GENERATION', type: 'manual' })
+    .create({ account_id: 'account_id', kind_schema: 'GENERATION', name: 'name', type: 'manual' })
     .catch(async (err) => {
       if (err instanceof ScaleWorkshop.APIError) {
         console.log(err.status); // 400
@@ -125,7 +125,7 @@ const client = new ScaleWorkshop({
 });
 
 // Or, configure per-request:
-await client.evaluationDatasets.create({ account_id: 'account_id', name: 'name', schema_type: 'GENERATION', type: 'manual' }, {
+await client.evaluationDatasets.create({ account_id: 'account_id', kind_schema: 'GENERATION', name: 'name', type: 'manual' }, {
   maxRetries: 5,
 });
 ```
@@ -142,7 +142,7 @@ const client = new ScaleWorkshop({
 });
 
 // Override per-request:
-await client.evaluationDatasets.create({ account_id: 'account_id', name: 'name', schema_type: 'GENERATION', type: 'manual' }, {
+await client.evaluationDatasets.create({ account_id: 'account_id', kind_schema: 'GENERATION', name: 'name', type: 'manual' }, {
   timeout: 5 * 1000,
 });
 ```
@@ -195,13 +195,13 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 const client = new ScaleWorkshop();
 
 const response = await client.evaluationDatasets
-  .create({ account_id: 'account_id', name: 'name', schema_type: 'GENERATION', type: 'manual' })
+  .create({ account_id: 'account_id', kind_schema: 'GENERATION', name: 'name', type: 'manual' })
   .asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
 const { data: evaluationDataset, response: raw } = await client.evaluationDatasets
-  .create({ account_id: 'account_id', name: 'name', schema_type: 'GENERATION', type: 'manual' })
+  .create({ account_id: 'account_id', kind_schema: 'GENERATION', name: 'name', type: 'manual' })
   .withResponse();
 console.log(raw.headers.get('X-My-Header'));
 console.log(evaluationDataset.id);
@@ -309,7 +309,7 @@ const client = new ScaleWorkshop({
 
 // Override per-request:
 await client.evaluationDatasets.create(
-  { account_id: 'account_id', name: 'name', schema_type: 'GENERATION', type: 'manual' },
+  { account_id: 'account_id', kind_schema: 'GENERATION', name: 'name', type: 'manual' },
   {
     httpAgent: new http.Agent({ keepAlive: false }),
   },
