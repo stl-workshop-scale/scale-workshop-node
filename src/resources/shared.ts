@@ -17,7 +17,7 @@ export interface FlexibleChunk {
 export interface StringExtraInfoSchema {
   info: string;
 
-  schema_type?: 'STRING';
+  kind_schema?: 'STRING';
 }
 
 export interface SystemMessage {

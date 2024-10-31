@@ -191,7 +191,7 @@ export interface FlexibleTestCaseVersion {
    */
   archived_at?: string;
 
-  schema_type?: 'FLEXIBLE';
+  kind_schema?: 'FLEXIBLE';
 }
 
 export interface GenerationTestCaseSchema {
@@ -240,7 +240,7 @@ export interface GenerationTestCaseVersion {
    */
   archived_at?: string;
 
-  schema_type?: 'GENERATION';
+  kind_schema?: 'GENERATION';
 }
 
 export interface PaginatedTestCases {

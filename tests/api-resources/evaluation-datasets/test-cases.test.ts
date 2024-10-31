@@ -27,7 +27,7 @@ describe('resource testCases', () => {
       test_case_data: {
         artifact_ids_filter: ['string', 'string', 'string'],
         input: 'input',
-        expected_extra_info: { info: 'info', schema_type: 'STRING' },
+        expected_extra_info: { info: 'info', kind_schema: 'STRING' },
         expected_output: 'expected_output',
       },
       account_id: 'account_id',
@@ -82,7 +82,7 @@ describe('resource testCases', () => {
         test_case_data: {
           artifact_ids_filter: ['string', 'string', 'string'],
           input: 'input',
-          expected_extra_info: { info: 'info', schema_type: 'STRING' },
+          expected_extra_info: { info: 'info', kind_schema: 'STRING' },
           expected_output: 'expected_output',
         },
       },
@@ -162,7 +162,7 @@ describe('resource testCases', () => {
         test_case_data: {
           artifact_ids_filter: ['string', 'string', 'string'],
           input: 'input',
-          expected_extra_info: { info: 'info', schema_type: 'STRING' },
+          expected_extra_info: { info: 'info', kind_schema: 'STRING' },
           expected_output: 'expected_output',
         },
         account_id: 'account_id',
@@ -171,7 +171,7 @@ describe('resource testCases', () => {
         test_case_data: {
           artifact_ids_filter: ['string', 'string', 'string'],
           input: 'input',
-          expected_extra_info: { info: 'info', schema_type: 'STRING' },
+          expected_extra_info: { info: 'info', kind_schema: 'STRING' },
           expected_output: 'expected_output',
         },
         account_id: 'account_id',
@@ -180,7 +180,7 @@ describe('resource testCases', () => {
         test_case_data: {
           artifact_ids_filter: ['string', 'string', 'string'],
           input: 'input',
-          expected_extra_info: { info: 'info', schema_type: 'STRING' },
+          expected_extra_info: { info: 'info', kind_schema: 'STRING' },
           expected_output: 'expected_output',
         },
         account_id: 'account_id',

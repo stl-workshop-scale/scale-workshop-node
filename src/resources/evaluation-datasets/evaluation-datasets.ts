@@ -177,14 +177,14 @@ export interface EvaluationDatasetCreateResponse {
   created_by_user_id: string;
 
   /**
+   * The schema type of the dataset.
+   */
+  kind_schema: 'GENERATION' | 'FLEXIBLE';
+
+  /**
    * The name of the dataset
    */
   name: string;
-
-  /**
-   * The schema type of the dataset.
-   */
-  schema_type: 'GENERATION' | 'FLEXIBLE';
 
   /**
    * The date and time when the entity was last updated in ISO format.
@@ -239,14 +239,14 @@ export interface EvaluationDatasetRetrieveResponse {
   created_by_user_id: string;
 
   /**
+   * The schema type of the dataset.
+   */
+  kind_schema: 'GENERATION' | 'FLEXIBLE';
+
+  /**
    * The name of the dataset
    */
   name: string;
-
-  /**
-   * The schema type of the dataset.
-   */
-  schema_type: 'GENERATION' | 'FLEXIBLE';
 
   /**
    * The date and time when the entity was last updated in ISO format.
@@ -353,14 +353,14 @@ export interface EvaluationDatasetUpdateResponse {
   created_by_user_id: string;
 
   /**
+   * The schema type of the dataset.
+   */
+  kind_schema: 'GENERATION' | 'FLEXIBLE';
+
+  /**
    * The name of the dataset
    */
   name: string;
-
-  /**
-   * The schema type of the dataset.
-   */
-  schema_type: 'GENERATION' | 'FLEXIBLE';
 
   /**
    * The date and time when the entity was last updated in ISO format.
@@ -415,14 +415,14 @@ export interface EvaluationDatasetListResponse {
   created_by_user_id: string;
 
   /**
+   * The schema type of the dataset.
+   */
+  kind_schema: 'GENERATION' | 'FLEXIBLE';
+
+  /**
    * The name of the dataset
    */
   name: string;
-
-  /**
-   * The schema type of the dataset.
-   */
-  schema_type: 'GENERATION' | 'FLEXIBLE';
 
   /**
    * The date and time when the entity was last updated in ISO format.
@@ -630,14 +630,14 @@ export namespace EvaluationDatasetCreateParams {
     account_id: string;
 
     /**
+     * The schema type of the dataset
+     */
+    kind_schema: 'GENERATION' | 'FLEXIBLE';
+
+    /**
      * The name of the dataset
      */
     name: string;
-
-    /**
-     * The schema type of the dataset
-     */
-    schema_type: 'GENERATION' | 'FLEXIBLE';
 
     /**
      * Manually or automatically generated dataset
@@ -652,6 +652,11 @@ export namespace EvaluationDatasetCreateParams {
     account_id: string;
 
     /**
+     * The schema type of the dataset. Only GENERATION is currently supported.
+     */
+    kind_schema: 'GENERATION';
+
+    /**
      * ID of the knowledge base to generate the evaluation dataset from.
      */
     knowledge_base_id: string;
@@ -660,11 +665,6 @@ export namespace EvaluationDatasetCreateParams {
      * The name of the dataset
      */
     name: string;
-
-    /**
-     * The schema type of the dataset. Only GENERATION is currently supported.
-     */
-    schema_type: 'GENERATION';
 
     /**
      * Manually or automatically generated dataset
@@ -689,14 +689,14 @@ export namespace EvaluationDatasetCreateParams {
     harms_list: Array<string>;
 
     /**
+     * The schema type of the dataset. Only GENERATION is currently supported.
+     */
+    kind_schema: 'GENERATION';
+
+    /**
      * The name of the dataset
      */
     name: string;
-
-    /**
-     * The schema type of the dataset. Only GENERATION is currently supported.
-     */
-    schema_type: 'GENERATION';
 
     /**
      * Manually or automatically generated dataset
