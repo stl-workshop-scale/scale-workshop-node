@@ -9,31 +9,6 @@ const client = new ScaleWorkshop({
 });
 
 describe('resource evaluationDatasets', () => {
-  test('create: only required params', async () => {
-    const responsePromise = client.evaluationDatasets.create({
-      account_id: 'account_id',
-      kind_schema: 'GENERATION',
-      name: 'name',
-      type: 'manual',
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('create: required and optional params', async () => {
-    const response = await client.evaluationDatasets.create({
-      account_id: 'account_id',
-      kind_schema: 'GENERATION',
-      name: 'name',
-      type: 'manual',
-    });
-  });
-
   test('retrieve', async () => {
     const responsePromise = client.evaluationDatasets.retrieve('evaluation_dataset_id');
     const rawResponse = await responsePromise.asResponse();

@@ -2,14 +2,12 @@
 
 export * from './shared';
 export {
-  EvaluationDatasetCreateResponse,
   EvaluationDatasetRetrieveResponse,
   EvaluationDatasetUpdateResponse,
   EvaluationDatasetListResponse,
   EvaluationDatasetApproveBatchResponse,
   EvaluationDatasetPublishResponse,
   EvaluationDatasetRemoveResponse,
-  EvaluationDatasetCreateParams,
   EvaluationDatasetUpdateParams,
   EvaluationDatasetListParams,
   EvaluationDatasetApproveBatchParams,

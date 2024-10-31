@@ -185,7 +185,6 @@ export namespace ScaleWorkshop {
   export import PageNumberPageResponse = Pagination.PageNumberPageResponse;
 
   export import EvaluationDatasets = API.EvaluationDatasets;
-  export import EvaluationDatasetCreateResponse = API.EvaluationDatasetCreateResponse;
   export import EvaluationDatasetRetrieveResponse = API.EvaluationDatasetRetrieveResponse;
   export import EvaluationDatasetUpdateResponse = API.EvaluationDatasetUpdateResponse;
   export import EvaluationDatasetListResponse = API.EvaluationDatasetListResponse;
@@ -193,7 +192,6 @@ export namespace ScaleWorkshop {
   export import EvaluationDatasetPublishResponse = API.EvaluationDatasetPublishResponse;
   export import EvaluationDatasetRemoveResponse = API.EvaluationDatasetRemoveResponse;
   export import EvaluationDatasetListResponsesPageNumberPage = API.EvaluationDatasetListResponsesPageNumberPage;
-  export import EvaluationDatasetCreateParams = API.EvaluationDatasetCreateParams;
   export import EvaluationDatasetUpdateParams = API.EvaluationDatasetUpdateParams;
   export import EvaluationDatasetListParams = API.EvaluationDatasetListParams;
   export import EvaluationDatasetApproveBatchParams = API.EvaluationDatasetApproveBatchParams;
