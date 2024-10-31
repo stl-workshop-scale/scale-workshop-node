@@ -9,9 +9,9 @@
     "esModuleInterop": true,
     "baseUrl": "./",
     "paths": {
-      "stl-workshop-scale-20241031/_shims/auto/*": ["src/_shims/auto/*-node"],
-      "stl-workshop-scale-20241031/*": ["src/*"],
-      "stl-workshop-scale-20241031": ["src/index.ts"],
+      "scale-workshop/_shims/auto/*": ["src/_shims/auto/*-node"],
+      "scale-workshop/*": ["src/*"],
+      "scale-workshop": ["src/index.ts"],
     },
     "noEmit": true,
 

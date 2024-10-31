@@ -1,5 +1,5 @@
-import { createResponseHeaders } from 'stl-workshop-scale-20241031/core';
-import { Headers } from 'stl-workshop-scale-20241031/_shims/index';
+import { createResponseHeaders } from 'scale-workshop/core';
+import { Headers } from 'scale-workshop/_shims/index';
 
 describe('response parsing', () => {
   // TODO: test unicode characters

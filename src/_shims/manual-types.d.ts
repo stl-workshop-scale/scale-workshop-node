@@ -4,8 +4,8 @@
 /**
  * Types will get added to this namespace when you import one of the following:
  *
- *   import 'stl-workshop-scale-20241031/shims/node'
- *   import 'stl-workshop-scale-20241031/shims/web'
+ *   import 'scale-workshop/shims/node'
+ *   import 'scale-workshop/shims/web'
  *
  * Importing more than one will cause type and runtime errors.
  */

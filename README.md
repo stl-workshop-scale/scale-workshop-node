@@ -1,10 +1,10 @@
-# Stl Workshop Scale 20241031 Node API Library
+# Scale Workshop Node API Library
 
-[![NPM version](https://img.shields.io/npm/v/stl-workshop-scale-20241031.svg)](https://npmjs.org/package/stl-workshop-scale-20241031) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/stl-workshop-scale-20241031)
+[![NPM version](https://img.shields.io/npm/v/scale-workshop.svg)](https://npmjs.org/package/scale-workshop) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/scale-workshop)
 
-This library provides convenient access to the Stl Workshop Scale 20241031 REST API from server-side TypeScript or JavaScript.
+This library provides convenient access to the Scale Workshop REST API from server-side TypeScript or JavaScript.
 
-The REST API documentation can be found on [docs.stl-workshop-scale-20241031.com](https://docs.stl-workshop-scale-20241031.com). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [docs.scale-workshop.com](https://docs.scale-workshop.com). The full API of this library can be found in [api.md](api.md).
 
 It is generated with [Stainless](https://www.stainlessapi.com/).
 
@@ -15,7 +15,7 @@ npm install git+ssh://git@github.com:stainless-sdks/stl-workshop-scale-20241031-
 ```
 
 > [!NOTE]
-> Once this package is [published to npm](https://app.stainlessapi.com/docs/guides/publish), this will become: `npm install stl-workshop-scale-20241031`
+> Once this package is [published to npm](https://app.stainlessapi.com/docs/guides/publish), this will become: `npm install scale-workshop`
 
 ## Usage
 
@@ -23,19 +23,14 @@ The full API of this library can be found in [api.md](api.md).
 
 <!-- prettier-ignore -->
 ```js
-import StlWorkshopScale20241031 from 'stl-workshop-scale-20241031';
+import ScaleWorkshop from 'scale-workshop';
 
-const client = new StlWorkshopScale20241031();
+const client = new ScaleWorkshop();
 
 async function main() {
-  const evaluationDataset = await client.evaluationDatasets.create({
-    account_id: 'account_id',
-    name: 'name',
-    schema_type: 'GENERATION',
-    type: 'manual',
-  });
+  const response = await client.myResourceName.myMethod();
 
-  console.log(evaluationDataset.id);
+  console.log(response.current_page);
 }
 
 main();
@@ -47,19 +42,12 @@ This library includes TypeScript definitions for all request params and response
 
 <!-- prettier-ignore -->
 ```ts
-import StlWorkshopScale20241031 from 'stl-workshop-scale-20241031';
+import ScaleWorkshop from 'scale-workshop';
 
-const client = new StlWorkshopScale20241031();
+const client = new ScaleWorkshop();
 
 async function main() {
-  const params: StlWorkshopScale20241031.EvaluationDatasetCreateParams = {
-    account_id: 'account_id',
-    name: 'name',
-    schema_type: 'GENERATION',
-    type: 'manual',
-  };
-  const evaluationDataset: StlWorkshopScale20241031.EvaluationDataset =
-    await client.evaluationDatasets.create(params);
+  const response: ScaleWorkshop.MyResourceNameMyMethodResponse = await client.myResourceName.myMethod();
 }
 
 main();
@@ -76,17 +64,15 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const evaluationDataset = await client.evaluationDatasets
-    .create({ account_id: 'account_id', name: 'name', schema_type: 'GENERATION', type: 'manual' })
-    .catch(async (err) => {
-      if (err instanceof StlWorkshopScale20241031.APIError) {
-        console.log(err.status); // 400
-        console.log(err.name); // BadRequestError
-        console.log(err.headers); // {server: 'nginx', ...}
-      } else {
-        throw err;
-      }
-    });
+  const response = await client.myResourceName.myMethod().catch(async (err) => {
+    if (err instanceof ScaleWorkshop.APIError) {
+      console.log(err.status); // 400
+      console.log(err.name); // BadRequestError
+      console.log(err.headers); // {server: 'nginx', ...}
+    } else {
+      throw err;
+    }
+  });
 }
 
 main();
@@ -116,12 +102,12 @@ You can use the `maxRetries` option to configure or disable this:
 <!-- prettier-ignore -->
 ```js
 // Configure the default for all requests:
-const client = new StlWorkshopScale20241031({
+const client = new ScaleWorkshop({
   maxRetries: 0, // default is 2
 });
 
 // Or, configure per-request:
-await client.evaluationDatasets.create({ account_id: 'account_id', name: 'name', schema_type: 'GENERATION', type: 'manual' }, {
+await client.myResourceName.myMethod({
   maxRetries: 5,
 });
 ```
@@ -133,12 +119,12 @@ Requests time out after 1 minute by default. You can configure this with a `time
 <!-- prettier-ignore -->
 ```ts
 // Configure the default for all requests:
-const client = new StlWorkshopScale20241031({
+const client = new ScaleWorkshop({
   timeout: 20 * 1000, // 20 seconds (default is 1 minute)
 });
 
 // Override per-request:
-await client.evaluationDatasets.create({ account_id: 'account_id', name: 'name', schema_type: 'GENERATION', type: 'manual' }, {
+await client.myResourceName.myMethod({
   timeout: 5 * 1000,
 });
 ```
@@ -157,19 +143,15 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 
 <!-- prettier-ignore -->
 ```ts
-const client = new StlWorkshopScale20241031();
+const client = new ScaleWorkshop();
 
-const response = await client.evaluationDatasets
-  .create({ account_id: 'account_id', name: 'name', schema_type: 'GENERATION', type: 'manual' })
-  .asResponse();
+const response = await client.myResourceName.myMethod().asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: evaluationDataset, response: raw } = await client.evaluationDatasets
-  .create({ account_id: 'account_id', name: 'name', schema_type: 'GENERATION', type: 'manual' })
-  .withResponse();
+const { data: response, response: raw } = await client.myResourceName.myMethod().withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(evaluationDataset.id);
+console.log(response.current_page);
 ```
 
 ### Making custom/undocumented requests
@@ -222,16 +204,16 @@ By default, this library uses `node-fetch` in Node, and expects a global `fetch`
 
 If you would prefer to use a global, web-standards-compliant `fetch` function even in a Node environment,
 (for example, if you are running Node with `--experimental-fetch` or using NextJS which polyfills with `undici`),
-add the following import before your first import `from "StlWorkshopScale20241031"`:
+add the following import before your first import `from "ScaleWorkshop"`:
 
 ```ts
 // Tell TypeScript and the package to use the global web fetch instead of node-fetch.
 // Note, despite the name, this does not add any polyfills, but expects them to be provided if needed.
-import 'stl-workshop-scale-20241031/shims/web';
-import StlWorkshopScale20241031 from 'stl-workshop-scale-20241031';
+import 'scale-workshop/shims/web';
+import ScaleWorkshop from 'scale-workshop';
 ```
 
-To do the inverse, add `import "stl-workshop-scale-20241031/shims/node"` (which does import polyfills).
+To do the inverse, add `import "scale-workshop/shims/node"` (which does import polyfills).
 This can also be useful if you are getting the wrong TypeScript types for `Response` ([more details](https://github.com/stainless-sdks/stl-workshop-scale-20241031-node/tree/main/src/_shims#readme)).
 
 ### Logging and middleware
@@ -241,9 +223,9 @@ which can be used to inspect or alter the `Request` or `Response` before/after e
 
 ```ts
 import { fetch } from 'undici'; // as one example
-import StlWorkshopScale20241031 from 'stl-workshop-scale-20241031';
+import ScaleWorkshop from 'scale-workshop';
 
-const client = new StlWorkshopScale20241031({
+const client = new ScaleWorkshop({
   fetch: async (url: RequestInfo, init?: RequestInit): Promise<Response> => {
     console.log('About to make a request', url, init);
     const response = await fetch(url, init);
@@ -268,17 +250,14 @@ import http from 'http';
 import { HttpsProxyAgent } from 'https-proxy-agent';
 
 // Configure the default for all requests:
-const client = new StlWorkshopScale20241031({
+const client = new ScaleWorkshop({
   httpAgent: new HttpsProxyAgent(process.env.PROXY_URL),
 });
 
 // Override per-request:
-await client.evaluationDatasets.create(
-  { account_id: 'account_id', name: 'name', schema_type: 'GENERATION', type: 'manual' },
-  {
-    httpAgent: new http.Agent({ keepAlive: false }),
-  },
-);
+await client.myResourceName.myMethod({
+  httpAgent: new http.Agent({ keepAlive: false }),
+});
 ```
 
 ## Semantic versioning

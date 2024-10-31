@@ -1,8 +1,8 @@
 {
-  "name": "stl-workshop-scale-20241031",
+  "name": "scale-workshop",
   "version": "0.0.1-alpha.0",
-  "description": "The official TypeScript library for the Stl Workshop Scale 20241031 API",
-  "author": "Stl Workshop Scale 20241031 <dev-feedback@stl-workshop-scale-20241031.com>",
+  "description": "The official TypeScript library for the Scale Workshop API",
+  "author": "Scale Workshop <dev-feedback@scale-workshop.com>",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "type": "commonjs",
@@ -60,8 +60,8 @@
     "./shims/web.mjs"
   ],
   "imports": {
-    "stl-workshop-scale-20241031": ".",
-    "stl-workshop-scale-20241031/*": "./src/*"
+    "scale-workshop": ".",
+    "scale-workshop/*": "./src/*"
   },
   "exports": {
     "./_shims/auto/*": {

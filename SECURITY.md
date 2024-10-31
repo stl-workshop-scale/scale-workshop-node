@@ -16,11 +16,11 @@ before making any information public.
 ## Reporting Non-SDK Related Security Issues
 
 If you encounter security issues that are not directly related to SDKs but pertain to the services
-or products provided by Stl Workshop Scale 20241031 please follow the respective company's security reporting guidelines.
+or products provided by Scale Workshop please follow the respective company's security reporting guidelines.
 
-### Stl Workshop Scale 20241031 Terms and Policies
+### Scale Workshop Terms and Policies
 
-Please contact dev-feedback@stl-workshop-scale-20241031.com for any questions or concerns regarding security of our services.
+Please contact dev-feedback@scale-workshop.com for any questions or concerns regarding security of our services.
 
 ---
 
